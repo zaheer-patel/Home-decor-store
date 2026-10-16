@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Thoughtful pieces for the spaces you call home. Shop considered home decor, lighting, textiles and more at Forma House.">
+  <title>Forma House — Make room for living</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7f5f0;
+      --ink: #25271f;
+      --muted: #77796f;
+      --olive: #68735a;
+      --line: #deddd5;
+      --white: #fffefa;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    .announcement { padding: 10px 20px; background: var(--ink); color: white; text-align: center; font-size: 11px; letter-spacing: .12em; }
+    .header { position: sticky; top: 0; z-index: 10; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 76px; padding: 0 6.2%; background: rgba(247,245,240,.96); border-bottom: 1px solid rgba(37,39,31,.08); backdrop-filter: blur(10px); }
+    .nav { display: flex; align-items: center; gap: 27px; }
+    .nav a, .header-action { font-size: 12px; letter-spacing: .035em; }
+    .nav a:hover, .header-action:hover { color: var(--olive); }
+    .brand { font-family: var(--serif); font-size: 26px; font-weight: 600; letter-spacing: .06em; white-space: nowrap; }
+    .header-right { display: flex; justify-content: flex-end; align-items: center; gap: 24px; }
+    .header-action { border: 0; background: none; cursor: pointer; }
+    .cart-count { display: inline-grid; place-items: center; min-width: 18px; height: 18px; margin-left: 4px; padding: 0 4px; border-radius: 50%; background: var(--olive); color: white; font-size: 10px; }
+    .hero { position: relative; min-height: 620px; height: min(72vw, 730px); overflow: hidden; background: #b8ad9c; }
+    .hero::before { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(24,27,22,.53) 0%, rgba(24,27,22,.2) 43%, transparent 76%), url("https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2200&q=85") center 55% / cover; }
+    .hero-content { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: min(640px, 80%); height: 100%; padding-left: 11%; color: white; }
+    .eyebrow { margin: 0 0 20px; font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    .hero h1 { max-width: 590px; margin: 0 0 18px; font-family: var(--serif); font-size: clamp(48px, 6.5vw, 82px); font-weight: 500; line-height: 1.03; letter-spacing: -.035em; }
+    .hero-copy { max-width: 370px; margin-bottom: 30px; color: rgba(255,255,255,.87); font-size: 14px; line-height: 1.8; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border: 1px solid var(--ink); background: var(--ink); color: white; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: background .2s, color .2s; cursor: pointer; }
+    .button:hover { background: transparent; color: var(--ink); }
+    .button-light { border-color: white; background: white; color: var(--ink); }
+    .button-light:hover { color: white; }
+    .section { padding: 100px 7%; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 35px; }
+    .section-heading .eyebrow { margin-bottom: 11px; color: var(--olive); }
+    h2 { margin-bottom: 0; font-family: var(--serif); font-size: clamp(34px, 4vw, 48px); font-weight: 500; line-height: 1.13; letter-spacing: -.02em; }
+    .text-link { padding-bottom: 5px; border-bottom: 1px solid var(--ink); font-size: 11px; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .filters { display: flex; gap: 9px; margin: -8px 0 28px; overflow-x: auto; }
+    .filter { padding: 9px 15px; border: 1px solid var(--line); border-radius: 30px; background: transparent; color: var(--muted); font-size: 11px; cursor: pointer; white-space: nowrap; }
+    .filter.active, .filter:hover { border-color: var(--ink); background: var(--ink); color: white; }
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+    .product-card[hidden] { display: none; }
+    .product-image { position: relative; aspect-ratio: 4 / 4.8; overflow: hidden; background: #e6e2d9; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .product-card:hover .product-image img { transform: scale(1.035); }
+    .tag { position: absolute; top: 12px; left: 12px; padding: 7px 9px; background: var(--white); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .add-button { position: absolute; right: 12px; bottom: 12px; left: 12px; min-height: 40px; border: 0; background: rgba(255,254,250,.94); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; opacity: 0; transform: translateY(6px); transition: opacity .2s, transform .2s; }
+    .product-card:hover .add-button, .add-button:focus-visible { opacity: 1; transform: translateY(0); }
+    .product-info { display: flex; justify-content: space-between; gap: 10px; padding-top: 15px; font-size: 12px; }
+    .product-name { margin-bottom: 6px; font-weight: 500; }
+    .product-type { color: var(--muted); font-size: 11px; }
+    .price { white-space: nowrap; }
+    .story { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; background: #e9e7df; }
+    .story-image { min-height: 420px; background: url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85") center / cover; }
+    .story-copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 11%; }
+    .story-copy .eyebrow { color: var(--olive); }
+    .story-copy h2 { max-width: 460px; margin-bottom: 20px; }
+    .story-copy p { max-width: 420px; margin-bottom: 27px; color: #65675e; font-size: 13px; line-height: 1.9; }
+    .categories { padding-top: 90px; }
+    .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .category { position: relative; height: 390px; overflow: hidden; background: #d9d4c9; }
+    .category img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .category:hover img { transform: scale(1.04); }
+    .category::after { position: absolute; inset: 45% 0 0; content: ""; background: linear-gradient(transparent, rgba(20,22,17,.55)); }
+    .category-label { position: absolute; z-index: 1; right: 22px; bottom: 24px; left: 22px; display: flex; justify-content: space-between; align-items: center; color: white; }
+    .category-label span:first-child { font-family: var(--serif); font-size: 28px; }
+    .category-label span:last-child { font-size: 18px; }
+    .quote { padding: 88px 20px; background: #eceae3; text-align: center; }
+    .quote blockquote { max-width: 760px; margin: 0 auto 20px; font-family: var(--serif); font-size: clamp(26px, 3.5vw, 40px); line-height: 1.4; }
+    .quote cite { color: var(--muted); font-size: 10px; font-style: normal; letter-spacing: .16em; text-transform: uppercase; }
+    .newsletter { display: flex; justify-content: space-between; align-items: center; gap: 40px; padding: 70px 9%; background: var(--olive); color: white; }
+    .newsletter h2 { max-width: 430px; font-size: 36px; }
+    .newsletter p { margin: 10px 0 0; color: rgba(255,255,255,.78); font-size: 12px; }
+    .newsletter-form { display: flex; width: min(440px, 100%); border-bottom: 1px solid rgba(255,255,255,.7); }
+    .newsletter-form input { flex: 1; min-width: 0; padding: 14px 0; border: 0; outline: none; background: transparent; color: white; font-size: 12px; }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.75); }
+    .newsletter-form button { border: 0; background: transparent; color: white; font-size: 10px; letter-spacing: .12em; cursor: pointer; }
+    .form-message { min-height: 17px; margin: 8px 0 0; font-size: 11px; }
+    footer { padding: 48px 7% 28px; background: var(--ink); color: white; }
+    .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 42px; }
+    .footer-brand { margin-bottom: 12px; font-family: var(--serif); font-size: 25px; letter-spacing: .06em; }
+    .footer-note { max-width: 230px; color: #b5b6ae; font-size: 11px; line-height: 1.8; }
+    .footer-column h3 { margin: 3px 0 16px; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
+    .footer-column a { display: block; margin: 10px 0; color: #b5b6ae; font-size: 11px; }
+    .footer-column a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 20px; border-top: 1px solid #484a43; color: #a6a89f; font-size: 10px; }
+    .toast { position: fixed; right: 22px; bottom: 22px; z-index: 20; padding: 14px 19px; background: var(--ink); color: white; font-size: 12px; opacity: 0; transform: translateY(10px); transition: .25s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 850px) {
+      .header { padding: 0 4%; }
+      .nav { gap: 14px; }
+      .nav a, .header-action { font-size: 10px; }
+      .header-right { gap: 13px; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 14px; }
+      .story { grid-template-columns: 1fr 1fr; }
+      .category { height: 300px; }
+      .newsletter { padding: 55px 7%; }
+      .footer-main { grid-template-columns: 1.3fr 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .announcement { font-size: 9px; }
+      .header { grid-template-columns: 1fr auto; min-height: 65px; }
+      .brand { grid-column: 1; grid-row: 1; justify-self: start; font-size: 23px; }
+      .nav { display: none; }
+      .header-right { grid-column: 2; grid-row: 1; }
+      .header-right .header-action:first-child { display: none; }
+      .hero { min-height: 590px; height: 78vh; }
+      .hero::before { background-position: 58% center; }
+      .hero-content { width: 92%; padding: 0 8%; }
+      .hero h1 { font-size: 56px; }
+      .section { padding: 70px 5%; }
+      .section-heading { align-items: flex-start; }
+      .section-heading .text-link { margin-top: 8px; font-size: 9px; }
+      .product-info { font-size: 11px; }
+      .product-image { aspect-ratio: 4 / 4.7; }
+      .add-button { opacity: 1; transform: none; }
+      .story { grid-template-columns: 1fr; }
+      .story-image { min-height: 330px; }
+      .story-copy { padding: 55px 8%; }
+      .categories { padding-top: 65px; }
+      .category-grid { grid-template-columns: 1fr; gap: 12px; }
+      .category { height: 340px; }
+      .quote { padding: 66px 8%; }
+      .newsletter { flex-direction: column; align-items: flex-start; gap: 25px; padding: 50px 7%; }
+      .newsletter h2 { font-size: 32px; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+      .footer-intro { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">COMPLIMENTARY SHIPPING ON ORDERS OVER $150 &nbsp;·&nbsp; A LITTLE SOMETHING FOR YOUR HOME</div>
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#shop">Shop</a>
+      <a href="#collections">Collections</a>
+      <a href="#our-story">Our story</a>
+    </nav>
+    <a class="brand" href="#" aria-label="Forma House home">FORMA HOUSE</a>
+    <div class="header-right">
+      <a class="header-action" href="#newsletter">Journal</a>
+      <button class="header-action" type="button" aria-label="Shopping bag">Bag <span class="cart-count" aria-live="polite">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">A slower kind of living</p>
+        <h1 id="hero-title">Make room<br>for living.</h1>
+        <p class="hero-copy">Considered pieces, honest materials, and the little details that make a house feel like yours.</p>
+        <a class="button button-light" href="#shop">Discover the collection <span aria-hidden="true">&nbsp;↗</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-heading">
+        <div><p class="eyebrow">Made to feel like home</p><h2>Objects with a point of view.</h2></div>
+        <a class="text-link" href="#collections">Shop all pieces &nbsp;↗</a>
+      </div>
+      <div class="filters" role="group" aria-label="Filter products">
+        <button class="filter active" data-filter="all" type="button" aria-pressed="true">Everything</button>
+        <button class="filter" data-filter="lighting" type="button" aria-pressed="false">Lighting</button>
+        <button class="filter" data-filter="ceramics" type="button" aria-pressed="false">Ceramics</button>
+        <button class="filter" data-filter="textiles" type="button" aria-pressed="false">Textiles</button>
+        <button class="filter" data-filter="furniture" type="button" aria-pressed="false">Furniture</button>
+      </div>
+      <div class="product-grid">
+        <article class="product-card" data-category="lighting">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=750&q=80" alt="Sculptural warm-toned table lamp" loading="lazy"><span class="tag">Bestseller</span><button class="add-button" type="button" data-product="Sola Table Lamp">Add to bag &nbsp;+</button></div>
+          <div class="product-info"><div><p class="product-name">Sola Table Lamp</p><p class="product-type">Hand-finished brass</p></div><span class="price">$248</span></div>
+        </article>
+        <article class="product-card" data-category="ceramics">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=750&q=80" alt="Handcrafted ceramic vessel with a natural finish" loading="lazy"><span class="tag">Handmade</span><button class="add-button" type="button" data-product="Forma Ceramic Vessel">Add to bag &nbsp;+</button></div>
+          <div class="product-info"><div><p class="product-name">Forma Ceramic Vessel</p><p class="product-type">Stoneware · Sand</p></div><span class="price">$86</span></div>
+        </article>
+        <article class="product-card" data-category="textiles">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=750&q=80" alt="Soft natural linen cushions arranged on a sofa" loading="lazy"><button class="add-button" type="button" data-product="Sunday Linen Cushion">Add to bag &nbsp;+</button></div>
+          <div class="product-info"><div><p class="product-name">Sunday Linen Cushion</p><p class="product-type">Belgian linen · Oat</p></div><span class="price">$72</span></div>
+        </article>
+        <article class="product-card" data-category="furniture">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1499933374294-4584851497cc?auto=format&fit=crop&w=750&q=80" alt="Minimal solid wood side table in a quiet interior" loading="lazy"><span class="tag">New</span><button class="add-button" type="button" data-product="The Sunday Side Table">Add to bag &nbsp;+</button></div>
+          <div class="product-info"><div><p class="product-name">The Sunday Side Table</p><p class="product-type">Solid oak · Natural</p></div><span class="price">$395</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story" id="our-story">
+      <div class="story-image" role="img" aria-label="Sunlit living room with warm natural materials"></div>
+      <div class="story-copy">
+        <p class="eyebrow">Less, but more meaningful</p>
+        <h2>Good things take their time.</h2>
+        <p>We believe the best rooms aren't decorated in a day. They're collected over years, shaped by everyday rituals, and filled with things that feel good to live with. We work with small makers who believe that, too.</p>
+        <a class="button" href="#collections">A little about us &nbsp;↗</a>
+      </div>
+    </section>
+
+    <section class="section categories" id="collections">
+      <div class="section-heading">
+        <div><p class="eyebrow">Find your feeling</p><h2>Rooms to come home to.</h2></div>
+        <a class="text-link" href="#shop">Explore everything &nbsp;↗</a>
+      </div>
+      <div class="category-grid">
+        <a class="category" href="#shop"><img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=900&q=80" alt="Calm, thoughtfully styled living room" loading="lazy"><span class="category-label"><span>The living room</span><span aria-hidden="true">↗</span></span></a>
+        <a class="category" href="#shop"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80" alt="Soft and serene bedroom in warm neutral tones" loading="lazy"><span class="category-label"><span>The bedroom</span><span aria-hidden="true">↗</span></span></a>
+        <a class="category" href="#shop"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" alt="Inviting home interior with natural light" loading="lazy"><span class="category-label"><span>Every little corner</span><span aria-hidden="true">↗</span></span></a>
+      </div>
+    </section>
+
+    <section class="quote">
+      <blockquote>“A home should tell the story of who you are, and be a collection of what you love.”</blockquote>
+      <cite>Make yourself at home</cite>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+      <div><p class="eyebrow">Letters from home</p><h2>A little inspiration, delivered.</h2><p>New finds, thoughtful spaces, and 10% off your first order.</p></div>
+      <form class="newsletter-wrap" id="newsletter-form">
+        <div class="newsletter-form"><input type="email" aria-label="Email address" placeholder="Your email address" required><button type="submit">COUNT ME IN &nbsp;↗</button></div>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main">
+      <div class="footer-intro"><div class="footer-brand">FORMA HOUSE</div><p class="footer-note">Thoughtful pieces for the spaces you call home. Made slowly, chosen with care.</p></div>
+      <div class="footer-column"><h3>Explore</h3><a href="#shop">Shop everything</a><a href="#collections">Collections</a><a href="#our-story">Our story</a></div>
+      <div class="footer-column"><h3>Here to help</h3><a href="mailto:hello@formahouse.example">Contact us</a><a href="#newsletter">Shipping & returns</a><a href="#newsletter">FAQs</a></div>
+      <div class="footer-column"><h3>Find us</h3><a href="#newsletter">Instagram ↗</a><a href="#newsletter">Pinterest ↗</a><a href="#newsletter">Our journal</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Forma House. Made for living.</span><span>Thoughtfully sourced · Made to last</span></div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const products = document.querySelectorAll(".product-card");
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.filter;
+        filters.forEach((filter) => {
+          const selected = filter === button;
+          filter.classList.toggle("active", selected);
+          filter.setAttribute("aria-pressed", String(selected));
+        });
+        products.forEach((product) => {
+          product.hidden = category !== "all" && product.dataset.category !== category;
+        });
+      });
+    });
+
+    let itemCount = 0;
+    let toastTimer;
+    const toast = document.querySelector(".toast");
+    document.querySelectorAll(".add-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        itemCount += 1;
+        document.querySelector(".cart-count").textContent = String(itemCount);
+        toast.textContent = `${button.dataset.product} added to your bag`;
+        toast.classList.add("show");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove("show"), 2400);
+      });
+    });
+
+    document.querySelector("#newsletter-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      form.querySelector(".form-message").textContent = "Thanks for joining us — keep an eye on your inbox.";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
